@@ -1,17 +1,12 @@
 import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import WebView, { WebViewMessageEvent } from "react-native-webview";
 import { useEffect, useRef, useState } from "react";
-import * as Location from "expo-location";
 
-import { Alert } from "react-native";
 import { sendPostMessage } from "@/lib/post-mesagge";
-import { requestLocationWhenClick } from "@/lib/location";
+import { getCurLocation, requestLocationWhenClick } from "@/lib/location";
 import { requestNotificationWhenClick } from "@/lib/notification";
 
 export default function HomeScreen() {
-  const [location, setLocation] = useState<null | Location.LocationObject>(
-    null
-  );
   const webViewRef = useRef<WebView>(null);
 
   // const reverseGeocode = async (latitude: number, longitude: number) => {
@@ -19,25 +14,25 @@ export default function HomeScreen() {
   //   console.log(address);
   // };
 
-  const onClick = () => {
-    sendPostMessage(webViewRef);
-  };
   const onMessageFromWebView = async ({ nativeEvent }: WebViewMessageEvent) => {
     const { type, data } = JSON.parse(nativeEvent.data);
 
     // Type 정의.
     // Handler 정의.
     if (type === "REQ_LOCATION") {
-      await requestLocationWhenClick(webViewRef);
+      await requestLocationWhenClick(); // 띄우고
+      sendPostMessage(webViewRef, "DONE"); // 작업이 끝났다고 알린다.
     } else if (type === "REQ_NOTIFICATION") {
-      await requestNotificationWhenClick(webViewRef);
+      await requestNotificationWhenClick(); // 띄우고
+      sendPostMessage(webViewRef, "DONE"); // 작업이 끝났다고 알린다.
     } else if (type === "REQ_CURRENT_LOCATION") {
+      const { ok, location } = await getCurLocation(); // 띄우고 현재 위치를 가져온다.
+      if (ok) {
+        sendPostMessage(webViewRef, "RES_CURRENT_LOCATION", location as any);
+      }
     }
   };
-  async function getCurLocation() {
-    const locationObj = await Location.getCurrentPositionAsync();
-    console.log(locationObj);
-  }
+
   return (
     <>
       {/* 노치 컬리 조정은 SafeAreaView의 bacgroundColor로 조정가능 */}
@@ -49,7 +44,7 @@ export default function HomeScreen() {
             source={{ uri: "https://303a-211-250-35-78.ngrok-free.app" }}
             onMessage={onMessageFromWebView}
           />
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={{ backgroundColor: "pink", padding: 16 }}
             // onPress={async () => await requestNotificationWhenClick()}
             onPress={async () => await getCurLocation()}
@@ -62,7 +57,7 @@ export default function HomeScreen() {
             onPress={() => onClick()}
           >
             <Text>sendPostMessage!</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           {/* <View>
             <Text>asdasdsad</Text>
           </View>

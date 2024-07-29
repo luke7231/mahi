@@ -4,9 +4,7 @@ import { sendPostMessage } from "./post-mesagge";
 import { RefObject } from "react";
 import WebView from "react-native-webview";
 
-export async function requestNotificationWhenClick(
-  webViewRef: RefObject<WebView>
-) {
+export async function requestNotificationWhenClick() {
   const { status } = await Notifications.requestPermissionsAsync();
   console.log(status);
   if (status !== "granted") {
@@ -22,6 +20,5 @@ export async function requestNotificationWhenClick(
       { cancelable: false }
     );
   }
-  sendPostMessage(webViewRef);
   return;
 }

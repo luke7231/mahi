@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "466476337269",
+    "project_id": "mahi-aa801",
+    "storage_bucket": "mahi-aa801.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466476337269:android:40968550a36a46696c903c",
+        "android_client_info": {
+          "package_name": "com.yourcompany.mahi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB31sEapMju-rZ-tLHt5ArENTg5x8W75_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

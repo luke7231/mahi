@@ -8,3 +8,10 @@ export const sendPostMessage = (
 ) => {
   webViewRef.current?.postMessage(JSON.stringify({ type, data }));
 };
+
+export const sendTokenToWebView = (
+  webViewRef: RefObject<WebView>,
+  token: string
+) => {
+  webViewRef.current?.postMessage(token);
+};

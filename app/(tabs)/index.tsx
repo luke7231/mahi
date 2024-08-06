@@ -3,7 +3,7 @@ import WebView, { WebViewMessageEvent } from "react-native-webview";
 import { useEffect, useRef, useState } from "react";
 
 import * as Notifications from "expo-notifications";
-import { sendPostMessage } from "@/lib/post-mesagge";
+import { sendPostMessage, sendTokenToWebView } from "@/lib/post-mesagge";
 import { getCurLocation, requestLocationWhenClick } from "@/lib/location";
 import {
   registerForPushNotificationsAsync,
@@ -22,7 +22,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     registerForPushNotificationsAsync()
-      .then((token) => setExpoPushToken(token ?? ""))
+      .then((token) => (token ? sendTokenToWebView(webViewRef, token) : null))
       .catch((error: any) => setExpoPushToken(`${error}`));
 
     // [푸시를 받아서 접속했을 때!!!]
@@ -65,7 +65,8 @@ export default function HomeScreen() {
           <WebView
             ref={webViewRef}
             // source={{ uri: "http://172.25.81.144:3000" }} // 학교 사무실
-            source={{ uri: "https://ad11-210-119-237-102.ngrok-free.app" }}
+            source={{ uri: "http://192.168.200.181:3000" }} // 학교 사무실
+            // source={{ uri: "https://ad11-210-119-237-102.ngrok-free.app" }}
             onMessage={onMessageFromWebView}
           />
           {/* <TouchableOpacity

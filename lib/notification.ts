@@ -51,14 +51,8 @@ export async function registerForPushNotificationsAsync() {
   if (Device.isDevice) {
     const { status: existingStatus } =
       await Notifications.getPermissionsAsync();
-    console.log(existingStatus);
     let finalStatus = existingStatus;
     if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-      return;
-    }
-    if (finalStatus !== "granted") {
       const { status } = await Notifications.requestPermissionsAsync();
       finalStatus = status;
       return;
@@ -75,7 +69,6 @@ export async function registerForPushNotificationsAsync() {
           projectId,
         })
       ).data;
-      console.log(pushTokenString);
       return pushTokenString;
     } catch (e: unknown) {
       handleRegistrationError(`${e}`);

@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "mahi",
+    "name": "마감히어로",
     "slug": "mahi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/IMG_3381.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {

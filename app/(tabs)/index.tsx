@@ -1,10 +1,14 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { Platform, View, SafeAreaView } from "react-native";
 import WebView, { WebViewMessageEvent } from "react-native-webview";
 import { useEffect, useRef, useState } from "react";
 
+import * as Notifications from "expo-notifications";
 import { sendPostMessage } from "@/lib/post-mesagge";
 import { getCurLocation, requestLocationWhenClick } from "@/lib/location";
-import { requestNotificationWhenClick } from "@/lib/notification";
+import {
+  registerForPushNotificationsAsync,
+  requestNotificationWhenClick,
+} from "@/lib/notification";
 
 export default function HomeScreen() {
   const webViewRef = useRef<WebView>(null);
@@ -13,6 +17,26 @@ export default function HomeScreen() {
   //   let address = await Location.reverseGeocodeAsync({ latitude, longitude });
   //   console.log(address);
   // };
+  const [expoPushToken, setExpoPushToken] = useState("");
+  const responseListener = useRef<Notifications.Subscription>();
+
+  useEffect(() => {
+    registerForPushNotificationsAsync()
+      .then((token) => setExpoPushToken(token ?? ""))
+      .catch((error: any) => setExpoPushToken(`${error}`));
+
+    // [푸시를 받아서 접속했을 때!!!]
+    responseListener.current =
+      Notifications.addNotificationResponseReceivedListener((response) => {
+        console.log(response, "hi");
+        console.log(response.notification.request.content);
+      });
+
+    return () => {
+      responseListener.current &&
+        Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, []);
 
   const onMessageFromWebView = async ({ nativeEvent }: WebViewMessageEvent) => {
     const { type, data } = JSON.parse(nativeEvent.data);
@@ -40,8 +64,8 @@ export default function HomeScreen() {
         <View style={{ flex: 1, justifyContent: "space-between" }}>
           <WebView
             ref={webViewRef}
-            // source={{ uri: "http://192.168.200.181:3000" }}
-            source={{ uri: "https://303a-211-250-35-78.ngrok-free.app" }}
+            // source={{ uri: "http://172.25.81.144:3000" }} // 학교 사무실
+            source={{ uri: "https://ad11-210-119-237-102.ngrok-free.app" }}
             onMessage={onMessageFromWebView}
           />
           {/* <TouchableOpacity

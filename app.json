@@ -4,13 +4,13 @@
     "slug": "mahi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/IMG_3381.png",
+    "icon": "./assets/images/mahi-icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/mahi-splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#1562fc"
     },
     "ios": {
       "supportsTablet": true,
@@ -18,8 +18,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/foreground-img.png",
+        "backgroundColor": "#1562fc"
       },
       "package": "com.yourcompany.mahi",
       "versionCode": 1,

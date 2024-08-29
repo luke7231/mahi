@@ -9,10 +9,10 @@ import {
   registerForPushNotificationsAsync,
   requestNotificationWhenClick,
 } from "@/lib/notification";
+import { useAndroidBackEffect } from "@/hooks/useAndroidBackEffect";
 
 export default function HomeScreen() {
   const webViewRef = useRef<WebView>(null);
-
   // const reverseGeocode = async (latitude: number, longitude: number) => {
   //   let address = await Location.reverseGeocodeAsync({ latitude, longitude });
   //   console.log(address);
@@ -20,6 +20,7 @@ export default function HomeScreen() {
   const [expoPushToken, setExpoPushToken] = useState("");
   const responseListener = useRef<Notifications.Subscription>();
 
+  useAndroidBackEffect(webViewRef);
   useEffect(() => {
     registerForPushNotificationsAsync()
       .then((token) => (token ? sendTokenToWebView(webViewRef, token) : null))
@@ -54,6 +55,15 @@ export default function HomeScreen() {
       if (ok) {
         sendPostMessage(webViewRef, "RES_CURRENT_LOCATION", location as any);
       }
+    } else if (type === "clear_history") {
+      console.log("clearing");
+      if (webViewRef.current && webViewRef.current.clearHistory) {
+        if (Platform.OS === "android") {
+          webViewRef.current.clearHistory();
+        } else {
+          // iOS에서는 강제로 새로고침하거나 빈 페이지를 로드
+        }
+      }
     }
   };
 
@@ -63,9 +73,13 @@ export default function HomeScreen() {
       <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
         <View style={{ flex: 1, justifyContent: "space-between" }}>
           <WebView
+            webviewDebuggingEnabled={true}
+            // 아이폰에서 스와이프로 뒤로가기 허용하는 prop
+            allowsBackForwardNavigationGestures
             ref={webViewRef}
-            // source={{ uri: "http://172.25.81.144:3000" }} // 학교 사무실
-            source={{ uri: "http://192.168.200.181:3000" }} // 학교 사무실
+            // source={{ uri: "http://172.25.80.188:3000" }} // 학교 사무실
+            source={{ uri: "http://192.168.200.181:3000" }} // 집
+            // source={{ uri: "http://mahi-web.vercel.app" }} // prd
             // source={{ uri: "https://ad11-210-119-237-102.ngrok-free.app" }}
             onMessage={onMessageFromWebView}
           />

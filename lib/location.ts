@@ -52,7 +52,7 @@ export async function getCurLocation() {
   if (status === "granted") {
     console.log("진입");
     const location = await Location.getCurrentPositionAsync({
-      accuracy: isAndroid ? Location.Accuracy.Low : Location.Accuracy.Lowest,
+      accuracy: isAndroid ? Location.Accuracy.Lowest : Location.Accuracy.Lowest,
     });
     console.log("끝");
     console.log(status);

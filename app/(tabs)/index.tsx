@@ -70,7 +70,13 @@ export default function HomeScreen() {
   return (
     <>
       {/* 노치 컬리 조정은 SafeAreaView의 bacgroundColor로 조정가능 */}
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: "#fff",
+          paddingTop: Platform.OS === "android" ? 24 : 0,
+        }}
+      >
         <View style={{ flex: 1, justifyContent: "space-between" }}>
           <WebView
             webviewDebuggingEnabled={true}

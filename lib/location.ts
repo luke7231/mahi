@@ -1,5 +1,5 @@
 import * as Location from "expo-location";
-import { Alert } from "react-native";
+import { Alert, Platform } from "react-native";
 import { sendPostMessage } from "./post-mesagge";
 import { goSettings } from "./common";
 import { RefObject } from "react";
@@ -28,6 +28,7 @@ export async function requestLocationWhenClick() {
 }
 
 export async function getCurLocation() {
+  const isAndroid = Platform.OS === "android";
   let { status } = await Location.requestForegroundPermissionsAsync();
 
   if (status !== "granted") {
@@ -49,7 +50,11 @@ export async function getCurLocation() {
   }
 
   if (status === "granted") {
-    const location = await Location.getCurrentPositionAsync();
+    console.log("진입");
+    const location = await Location.getCurrentPositionAsync({
+      accuracy: isAndroid ? Location.Accuracy.Low : Location.Accuracy.Lowest,
+    });
+    console.log("끝");
     console.log(status);
     console.log(location);
     return {

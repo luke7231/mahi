@@ -1,7 +1,6 @@
 import { Platform, View, SafeAreaView } from "react-native";
 import WebView, { WebViewMessageEvent } from "react-native-webview";
 import { useEffect, useRef, useState } from "react";
-import DeviceInfo from "react-native-device-info";
 import * as Notifications from "expo-notifications";
 import { sendPostMessage, sendTokenToWebView } from "@/lib/post-mesagge";
 import { getCurLocation, requestLocationWhenClick } from "@/lib/location";
@@ -91,8 +90,6 @@ export default function HomeScreen() {
             // source={{ uri: "http://mahi-web.vercel.app" }} // prd
             // source={{ uri: "https://ad11-210-119-237-102.ngrok-free.app" }}
             onMessage={onMessageFromWebView}
-            userAgent={Platform.OS === "android" ? "payple-pay-app" : ""}
-            applicationNameForUserAgent="payple-pay-app"
           />
           {/* <TouchableOpacity
             style={{ backgroundColor: "pink", padding: 16 }}

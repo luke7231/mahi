@@ -1,7 +1,7 @@
 import { Platform, View, SafeAreaView } from "react-native";
 import WebView, { WebViewMessageEvent } from "react-native-webview";
 import { useEffect, useRef, useState } from "react";
-
+import DeviceInfo from "react-native-device-info";
 import * as Notifications from "expo-notifications";
 import { sendPostMessage, sendTokenToWebView } from "@/lib/post-mesagge";
 import { getCurLocation, requestLocationWhenClick } from "@/lib/location";
@@ -10,6 +10,7 @@ import {
   requestNotificationWhenClick,
 } from "@/lib/notification";
 import { useAndroidBackEffect } from "@/hooks/useAndroidBackEffect";
+import { handleShouldStartLoadWithRequest } from "@/lib/deeplink";
 
 export default function HomeScreen() {
   const webViewRef = useRef<WebView>(null);
@@ -79,6 +80,8 @@ export default function HomeScreen() {
       >
         <View style={{ flex: 1, justifyContent: "space-between" }}>
           <WebView
+            originWhitelist={["*"]}
+            onShouldStartLoadWithRequest={handleShouldStartLoadWithRequest} //
             webviewDebuggingEnabled={true}
             // 아이폰에서 스와이프로 뒤로가기 허용하는 prop
             allowsBackForwardNavigationGestures
@@ -88,6 +91,8 @@ export default function HomeScreen() {
             // source={{ uri: "http://mahi-web.vercel.app" }} // prd
             // source={{ uri: "https://ad11-210-119-237-102.ngrok-free.app" }}
             onMessage={onMessageFromWebView}
+            userAgent={Platform.OS === "android" ? "payple-pay-app" : ""}
+            applicationNameForUserAgent="payple-pay-app"
           />
           {/* <TouchableOpacity
             style={{ backgroundColor: "pink", padding: 16 }}

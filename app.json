@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/mahi-icon.png",
-    "scheme": "myapp",
+    "scheme": "mahi",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/mahi-splash.png",
@@ -14,7 +14,84 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.luke7299.mahi"
+      "bundleIdentifier": "com.luke7299.mahi",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "namp",
+          "kakaomap",
+          "itmss",
+          "itms-appss",
+          "itms",
+          "itms-apps",
+          "shinhan-sr-ansimclick",
+          "shinhan-sr-ansimclick-payco",
+          "shinhan-sr-ansimclick-naverpay",
+          "smshinhanansimclick",
+          "hdcardappcardansimclick",
+          "smhyundaiansimclick",
+          "mpocket.online.ansimclick",
+          "scardcertiapp",
+          "cloudpay",
+          "hanaskcardmobileportal",
+          "nhappcardansimclick",
+          "nonghyupcardansimclick",
+          "kb-acp",
+          "lotteappcard",
+          "lottesmartpay",
+          "citispay",
+          "kpay",
+          "ispmobile",
+          "paypin",
+          "payco",
+          "tswansimclick",
+          "nhallonepayansimclick",
+          "citimobileapp",
+          "citicardappkr",
+          "lpayapp",
+          "kakaotalk",
+          "shinsegaeeasypayment",
+          "kftc-bankpay",
+          "bankwallet",
+          "uppay",
+          "banka",
+          "hanamopmoasign",
+          "iphoneSbank",
+          "wooripay",
+          "tauthlink",
+          "lguthepay",
+          "lguthepay-xpay",
+          "smartxpay-transfer",
+          "nhappcash-acp",
+          "SmartBank2WIB",
+          "SmartBank2WB",
+          "PortalCenterWB",
+          "woorimembers",
+          "com.wooricard.wcard",
+          "NewSmartPib",
+          "wibeetalk",
+          "ansimclickscard",
+          "ansimclickipcollect",
+          "vguardstart",
+          "samsungpay",
+          "monimopay",
+          "monimopayauth",
+          "hanawalletmembers",
+          "ktauthexternalcall",
+          "payprotocolwalletkr",
+          "newliiv",
+          "kbbank",
+          "supertoss",
+          "liivbank",
+          "upluscorporation",
+          "lmslpay",
+          "naversearchthirdlogin",
+          "kb-bankpay"
+        ],
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true,
+          "NSAllowsArbitraryLoadsInWebContent": true
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -31,11 +108,12 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      ["./plugin/android-manifest.plugin.js"],
       "expo-router",
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+          "locationAlwaysAndWhenInUsePermission": "내 위치 근처의 매장을 찾기 위해 위치 권한을 요청합니다."
         }
       ]
     ],

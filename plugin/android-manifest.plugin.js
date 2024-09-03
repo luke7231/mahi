@@ -74,6 +74,17 @@ module.exports = function androidManifestPlugin(config) {
 
           // 농협카드
           { $: { "android:name": "nh.smart.nhallonepay" } },
+
+          { $: { "android:name": "com.wooricard.wpay" } },
+          { $: { "android:name": "com.wooribank.smart.npib" } },
+          { $: { "android:name": "com.mysmilepay.app" } },
+          { $: { "android:name": "com.citibank.cardapp" } },
+          { $: { "android:name": "com.shinhan.smartcaremgr" } },
+          { $: { "android:name": "com.mobiletoong.travelwallet" } },
+          { $: { "android:name": "com.kbstar.kbbank" } },
+          { $: { "android:name": "com.ssg.serviceapp.android.egiftcertific" } },
+          { $: { "android:name": "net.ib.android.smcard" } },
+          { $: { "android:name": "com.lotte.lpay" } },
         ],
       },
     ];

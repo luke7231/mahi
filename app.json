@@ -17,7 +17,7 @@
       "bundleIdentifier": "com.luke7299.mahi",
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
-          "namp",
+          "nmap",
           "kakaomap",
           "itmss",
           "itms-appss",

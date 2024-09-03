@@ -17,6 +17,7 @@
       "bundleIdentifier": "com.luke7299.mahi",
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
+          "about",
           "nmap",
           "kakaomap",
           "itmss",
@@ -90,7 +91,12 @@
         "NSAppTransportSecurity": {
           "NSAllowsArbitraryLoads": true,
           "NSAllowsArbitraryLoadsInWebContent": true
-        }
+        },
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLSchemes": ["mahi"]
+          }
+        ]
       },
       "entitlements": {
         "com.apple.developer.applesignin": ["Default"]
@@ -112,6 +118,7 @@
     },
     "plugins": [
       ["./plugin/android-manifest.plugin.js"],
+      ["./plugin/android-manifest.plugin2.js"],
       "expo-router",
       [
         "expo-location",

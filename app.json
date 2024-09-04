@@ -16,6 +16,16 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.luke7299.mahi",
       "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true,
+          "NSAllowsArbitraryLoadsInWebContent": true
+        },
+        "CFBundleURLTypes": [
+          {
+            "CFBundleURLName": "com.luke7299.mahi",
+            "CFBundleURLSchemes": ["mahi"]
+          }
+        ],
         "LSApplicationQueriesSchemes": [
           "about",
           "nmap",
@@ -87,15 +97,6 @@
           "lmslpay",
           "naversearchthirdlogin",
           "kb-bankpay"
-        ],
-        "NSAppTransportSecurity": {
-          "NSAllowsArbitraryLoads": true,
-          "NSAllowsArbitraryLoadsInWebContent": true
-        },
-        "CFBundleURLTypes": [
-          {
-            "CFBundleURLSchemes": ["mahi"]
-          }
         ]
       },
       "entitlements": {

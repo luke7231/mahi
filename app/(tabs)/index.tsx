@@ -13,10 +13,6 @@ import { handleShouldStartLoadWithRequest } from "@/lib/deeplink";
 
 export default function HomeScreen() {
   const webViewRef = useRef<WebView>(null);
-  // const reverseGeocode = async (latitude: number, longitude: number) => {
-  //   let address = await Location.reverseGeocodeAsync({ latitude, longitude });
-  //   console.log(address);
-  // };
   const [expoPushToken, setExpoPushToken] = useState("");
   const responseListener = useRef<Notifications.Subscription>();
 
@@ -85,44 +81,18 @@ export default function HomeScreen() {
             // 아이폰에서 스와이프로 뒤로가기 허용하는 prop
             allowsBackForwardNavigationGestures
             ref={webViewRef}
-            // source={{ uri: "http://172.25.80.188:3000" }} // 학교 사무실
-            source={{ uri: "http://192.168.200.181:3000" }} // 집
-            // source={{ uri: "http://mahi-web.vercel.app" }} // prd
+            // source={{ uri: "http://localhost:3000" }} // 학교 사무실
+            // source={{ uri: "http://192.168.1.96:3000" }} // 학교 사무실
+            // source={{ uri: "http://172.25.85.176:3000" }} // 학교 사무실
+            // source={{ uri: "http://172.25.80.176:3000" }} // 학교 사무실
+            // source={{ uri: "http://192.168.200.181:3000" }} // 집
             // source={{ uri: "https://ad11-210-119-237-102.ngrok-free.app" }}
+            source={{ uri: "https://mahi-web.vercel.app" }} // prd
             onMessage={onMessageFromWebView}
+            applicationNameForUserAgent={
+              "mahi_app_" + Platform.OS + "/payple-pay-app"
+            }
           />
-          {/* <TouchableOpacity
-            style={{ backgroundColor: "pink", padding: 16 }}
-            // onPress={async () => await requestNotificationWhenClick()}
-            onPress={async () => await getCurLocation()}
-          >
-            <Text>getLocation!</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{ backgroundColor: "skyblue", padding: 16 }}
-            // onPress={async () => await requestNotificationWhenClick()}
-            onPress={() => onClick()}
-          >
-            <Text>sendPostMessage!</Text>
-          </TouchableOpacity> */}
-          {/* <View>
-            <Text>asdasdsad</Text>
-          </View>
-          <View>
-            <TouchableOpacity
-              style={{ backgroundColor: "pink", padding: 16 }}
-              onPress={async () => await requestLocationWhenClick()}
-            >
-              <Text>Location</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ backgroundColor: "skyblue", padding: 16 }}
-              // onPress={async () => await requestNotificationWhenClick()}
-              onPress={() => onClick()}
-            >
-              <Text>Notification</Text>
-            </TouchableOpacity>
-          </View> */}
         </View>
       </SafeAreaView>
     </>
@@ -131,22 +101,3 @@ export default function HomeScreen() {
 
 export const NOTCH_COLOR = "#fff";
 export const CAMERA_NOTCH_COLOR = "#162A0C";
-
-// const styles = StyleSheet.create({
-//   titleContainer: {
-//     flexDirection: "row",
-//     alignItems: "center",
-//     gap: 8,
-//   },
-//   stepContainer: {
-//     gap: 8,
-//     marginBottom: 8,
-//   },
-//   reactLogo: {
-//     height: 178,
-//     width: 290,
-//     bottom: 0,
-//     left: 0,
-//     position: "absolute",
-//   },
-// });

@@ -2,7 +2,7 @@
   "expo": {
     "name": "마감히어로",
     "slug": "mahi",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/mahi-icon.png",
     "scheme": "mahi",
@@ -125,6 +125,14 @@
         "expo-location",
         {
           "locationAlwaysAndWhenInUsePermission": "내 위치 근처의 매장을 찾기 위해 위치 권한을 요청합니다."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
         }
       ]
     ],

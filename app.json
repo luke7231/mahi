@@ -2,7 +2,7 @@
   "expo": {
     "name": "마감히어로",
     "slug": "mahi",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/mahi-icon.png",
     "scheme": "mahi",

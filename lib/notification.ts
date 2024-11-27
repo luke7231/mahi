@@ -57,6 +57,7 @@ export async function registerForPushNotificationsAsync() {
         ios: {
           allowAlert: true,
           allowSound: true,
+          allowBadge: false,
         },
       });
       finalStatus = status;

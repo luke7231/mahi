@@ -46,6 +46,10 @@ export default function HomeScreen() {
     } else if (type === "REQ_NOTIFICATION") {
       await requestNotificationWhenClick(); // 띄우고
       sendPostMessage(webViewRef, "DONE"); // 작업이 끝났다고 알린다.
+    } else if (type === "REQ_NOTIFICATION_TOKEN") {
+      registerForPushNotificationsAsync().then((token) =>
+        token ? sendTokenToWebView(webViewRef, token) : null
+      );
     } else if (type === "REQ_CURRENT_LOCATION") {
       const { ok, location } = await getCurLocation(); // 띄우고 현재 위치를 가져온다.
       if (ok) {

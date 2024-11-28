@@ -2,7 +2,7 @@
   "expo": {
     "name": "마감히어로",
     "slug": "mahi",
-    "version": "2.0.2",
+    "version": "3.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/mahi-icon.png",
     "scheme": "mahi",
@@ -110,7 +110,7 @@
         "backgroundColor": "#1562fc"
       },
       "package": "com.yourcompany.mahi",
-      "versionCode": 2,
+      "versionCode": 3,
       "googleServicesFile": "./google-services.json"
     },
     "web": {

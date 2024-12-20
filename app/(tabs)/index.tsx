@@ -85,12 +85,6 @@ export default function HomeScreen() {
             // 아이폰에서 스와이프로 뒤로가기 허용하는 prop
             allowsBackForwardNavigationGestures
             ref={webViewRef}
-            // source={{ uri: "http://localhost:3000" }} // 학교 사무실
-            // source={{ uri: "http://192.168.1.96:3000" }} // 학교 사무실
-            // source={{ uri: "http://172.25.85.176:3000" }} // 학교 사무실
-            // source={{ uri: "http://172.25.80.176:3000" }} // 학교 사무실
-            // source={{ uri: "http://192.168.200.181:3000" }} // 집
-            // source={{ uri: "https://ad11-210-119-237-102.ngrok-free.app" }}
             source={{ uri: "https://mahi-web.vercel.app" }} // prd
             onMessage={onMessageFromWebView}
             applicationNameForUserAgent={

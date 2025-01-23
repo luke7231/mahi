@@ -13,15 +13,10 @@ import { handleShouldStartLoadWithRequest } from "@/lib/deeplink";
 
 export default function HomeScreen() {
   const webViewRef = useRef<WebView>(null);
-  const [expoPushToken, setExpoPushToken] = useState("");
   const responseListener = useRef<Notifications.Subscription>();
 
   useAndroidBackEffect(webViewRef);
   useEffect(() => {
-    registerForPushNotificationsAsync()
-      .then((token) => (token ? sendTokenToWebView(webViewRef, token) : null))
-      .catch((error: any) => setExpoPushToken(`${error}`));
-
     // [푸시를 받아서 접속했을 때!!!]
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
@@ -85,7 +80,8 @@ export default function HomeScreen() {
             // 아이폰에서 스와이프로 뒤로가기 허용하는 prop
             allowsBackForwardNavigationGestures
             ref={webViewRef}
-            source={{ uri: "https://mahi-web.vercel.app" }} // prd
+            source={{ uri: "http://172.25.84.186:3000" }} // prd
+            // source={{ uri: "https://mahi-web.vercel.app" }} // prd
             onMessage={onMessageFromWebView}
             applicationNameForUserAgent={
               "mahi_app_" + Platform.OS + "/payple-pay-app"

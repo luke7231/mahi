@@ -5,22 +5,13 @@ import { RefObject } from "react";
 import WebView from "react-native-webview";
 import * as Device from "expo-device";
 import Constants from "expo-constants";
+import { goSettings } from "./common";
 
 export async function requestNotificationWhenClick() {
   const { status } = await Notifications.requestPermissionsAsync();
-  console.log(status);
+
   if (status !== "granted") {
-    Alert.alert(
-      "", // 대화상자 제목
-      "언제든 [설정]앱에서 변경하실 수 있습니다!", // 대화상자 내용 (배민에서 그대로 가져옴.)
-      [
-        {
-          text: "확인",
-          style: "cancel",
-        },
-      ],
-      { cancelable: false }
-    );
+    await goSettings();
   }
   return;
 }
